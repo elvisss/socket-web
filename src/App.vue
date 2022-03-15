@@ -1,12 +1,24 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
-  </div>
+  <layout-content>
+    <router-view></router-view>
+  </layout-content>
 </template>
+
+<script>
+import LayoutContent from '@/layouts/Content.vue'
+import wsService from '@/services/websocketService'
+
+export default {
+  components: {
+    LayoutContent
+  },
+  data() {
+    return {
+      socket: wsService.instance
+    };
+  }
+};
+</script>
 
 <style lang="scss">
 #app {
