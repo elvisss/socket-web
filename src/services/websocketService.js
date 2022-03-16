@@ -29,4 +29,9 @@ export default class WebsocketService {
 		})
 	}
 
+	emit(evento, payload, callback) {
+		console.log('emitting...', evento)
+		this.socket.emit(evento, payload, callback);
+	}
+
 }
