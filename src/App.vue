@@ -6,20 +6,10 @@
 
 <script>
 import LayoutContent from '@/layouts/Content.vue'
-/* import wsService from '@/services/websocketService' */
-import chatService from '@/services/chatService'
 
 export default {
   components: {
     LayoutContent
-  },
-  data() {
-    return {
-      chatService: new chatService()
-    };
-  },
-  created() {
-    this.chatService.sendMessage('Hey!')
   }
 };
 </script>
