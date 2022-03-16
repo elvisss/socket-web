@@ -27,11 +27,16 @@ export default {
       chatService: new chatService(),
     };
   },
+  created() {
+    this.chatService.getMessages((message) => {
+      console.log({ message });
+    })
+  },
   methods: {
     submit() {
       this.chatService.sendMessage(this.text);
       this.text = '';
-    },
+    }
   },
 };
 </script>

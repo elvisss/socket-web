@@ -13,4 +13,10 @@ export default class ChatService {
 
     this.ws.emit('message', payload);
   }
+
+  getMessages(cb) {
+    this.ws.listen('new-message', (payload) => {
+      cb(payload);
+    });
+  }
 }
