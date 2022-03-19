@@ -19,4 +19,10 @@ export default class ChatService {
       cb(payload);
     });
   }
+
+  getPrivateMessages(cb) {
+    this.ws.listen('private-message', (payload) => {
+      cb(payload);
+    });
+  }
 }

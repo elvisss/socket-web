@@ -32,13 +32,13 @@ export default class WebsocketService {
     });
   }
 
+  getUser() {
+    return this.user;
+  }
+
   emit(evento, payload, callback) {
     console.log('emitting...', evento);
     this.socket.emit(evento, payload, callback);
-  }
-
-  getUser() {
-    return this.user;
   }
 
   listen(evento, cb) {

@@ -5,11 +5,25 @@
 </template>
 
 <script>
+import chatService from '@/services/chatService';
 import LayoutContent from '@/layouts/Content.vue'
+import wsService from '@/services/websocketService'
 
 export default {
   components: {
     LayoutContent
+  },
+  data() {
+		return {
+			socket: wsService.instance,
+      chatService: new chatService(),
+		}
+	},
+  created() {
+    this.chatService.getPrivateMessages((message) => {
+      console.log({ message });
+      /* this.messages.push(message); */
+    })
   }
 };
 </script>
