@@ -6,7 +6,7 @@
     <div ref="chatMessage" id="chat-messages">
       <ul class="text-start m-0 p-0">
         <li v-for="(message, index) of messages" :key="index" class="list-group-item">
-          {{ message.de }}: {{ message.cuerpo }}
+          {{ message.from }}: {{ message.body }}
         </li>
       </ul>
     </div>

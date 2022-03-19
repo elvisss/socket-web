@@ -7,8 +7,8 @@ export default class ChatService {
 
   sendMessage(mensaje) {
     const payload = {
-      de: 'Elvis',
-      cuerpo: mensaje,
+      from: this.ws.getUser().name,
+      body: mensaje,
     };
 
     this.ws.emit('message', payload);

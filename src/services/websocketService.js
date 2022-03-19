@@ -1,12 +1,15 @@
 import openSocket from 'socket.io-client';
+import User from '@/classes/user';
 
 export default class WebsocketService {
   static _instance;
   socket;
   socketStatus = false;
+  user;
 
   constructor() {
     this.socket = openSocket(process.env.VUE_APP_WSURL);
+    this.loadStorage();
     this.checkStatus();
   }
 
@@ -34,9 +37,36 @@ export default class WebsocketService {
     this.socket.emit(evento, payload, callback);
   }
 
+  getUser() {
+    return this.user;
+  }
+
   listen(evento, cb) {
     this.socket.on(evento, (payload) => {
       cb(payload);
     });
+  }
+
+  loginWS(name) {
+    return new Promise((resolve) => {
+      this.emit('config-user', { name }, (resp) => {
+        console.log(resp);
+        this.user = new User(name);
+        this.saveStorage();
+        resolve();
+      });
+    });
+  }
+
+  saveStorage() {
+    localStorage.setItem('user', JSON.stringify(this.user));
+  }
+
+  loadStorage() {
+    const userStorage = localStorage.getItem('user');
+    if (userStorage) {
+      this.user = JSON.parse(userStorage);
+      this.loginWS(this.user.name);
+    }
   }
 }
