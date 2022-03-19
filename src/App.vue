@@ -7,7 +7,7 @@
 <script>
 import chatService from '@/services/chatService';
 import LayoutContent from '@/layouts/Content.vue'
-import wsService from '@/services/websocketService'
+import wsService from '@/services/webSocketService'
 
 export default {
   components: {

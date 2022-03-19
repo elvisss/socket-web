@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import wsService from '@/services/websocketService'
+import wsService from '@/services/webSocketService'
 
 export default {
   name: 'LoginView',

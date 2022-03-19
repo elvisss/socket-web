@@ -24,10 +24,11 @@ export default class WebsocketService {
     this.socket.on('connect', () => {
       console.log('connected');
       this.socketStatus = true;
+      this.loadStorage();
     });
 
     this.socket.on('disconnect', () => {
-      console.log('disconnect');
+      console.log('disconnected');
       this.socketStatus = false;
     });
   }
@@ -55,6 +56,17 @@ export default class WebsocketService {
         this.saveStorage();
         resolve();
       });
+    });
+  }
+
+  logoutWS() {
+    this.user = null;
+    localStorage.removeItem('user');
+    const payload = {
+      name: 'empty',
+    };
+    this.emit('config-user', payload, () => {
+      console.log('user removed');
     });
   }
 

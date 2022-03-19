@@ -1,4 +1,4 @@
-import wsService from '@/services/websocketService';
+import wsService from '@/services/webSocketService';
 
 export default class ChatService {
   constructor() {
@@ -24,5 +24,15 @@ export default class ChatService {
     this.ws.listen('private-message', (payload) => {
       cb(payload);
     });
+  }
+
+  getActiveUsers(cb) {
+    this.ws.listen('active-users', (payload) => {
+      cb(payload);
+    });
+  }
+
+  emitGetUsers() {
+    this.ws.emit('get-users');
   }
 }

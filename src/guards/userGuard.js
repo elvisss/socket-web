@@ -1,4 +1,4 @@
-import wsSocket from '../services/websocketService';
+import wsSocket from '@/services/webSocketService';
 
 export const userGuard = (_to, _from, next) => {
   const socket = wsSocket.instance;
